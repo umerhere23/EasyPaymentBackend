@@ -1,0 +1,24 @@
+{
+  "name": "easypaymentbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev":"nodemoon index.js"
+   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umerhere23/EasyPaymentBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umerhere23/EasyPaymentBackend/issues"
+  },
+  "homepage": "https://github.com/umerhere23/EasyPaymentBackend#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
