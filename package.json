@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemoon index.js"
-   },
+    "dev": "nodemoon index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/umerhere23/EasyPaymentBackend.git"
@@ -20,5 +20,9 @@
   "homepage": "https://github.com/umerhere23/EasyPaymentBackend#readme",
   "devDependencies": {
     "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
   }
 }
