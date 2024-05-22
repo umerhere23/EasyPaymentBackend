@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const customerController = require('./src/Controller/customerController');
+const  Controller = require('./src/routes/routes');
 
- 
-app.get('/customers', customerController.findAllCustomers);
+app.use('/customer',  Controller);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+});
+
+app.use((req, res, next) => {
+  res.status(404).send('No Route Found');
 });

@@ -1,8 +1,10 @@
 const express = require('express');
-const customerController = require('../Controller/customerController');
+const  Controller = require('../Controller/Controller');
 
 const router = express.Router();
 
-router.get('/customers', customerController.findAllCustomers);
+router.get('/customers', Controller.findAllCustomers);
+router.get('/Menu',  Controller.GetAllMenu);
+
 
 module.exports = router;
