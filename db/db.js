@@ -1,14 +1,15 @@
-const mysql= require('mysql2');
+const mysql = require('mysql2');
+const util = require('util');
 
-const pool=mysql.createPool({
-connectionLimit:'10',
-host:'localhost',
-user:'root',
-password:'',
-database:'easypayment'
+const pool = mysql.createPool({
+    connectionLimit: 10,
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'easypayment'
 });
 
+// Promisify the pool
+pool.query = util.promisify(pool.query);
 
-module.exports.pool = pool;
-
-
+module.exports = pool;

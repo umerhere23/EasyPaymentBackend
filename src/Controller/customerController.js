@@ -1,6 +1,6 @@
-const customerService = require('../../Service/customerService');
+const customerService = require('../Service/customerService');
 
-async function findAllCustomers(req, res) {
+exports.findAllCustomers = async function (req, res) {
     try {
         const customers = await customerService.findAllCustomers();
         res.json(customers);
@@ -8,7 +8,4 @@ async function findAllCustomers(req, res) {
         res.status(500).json({ message: err.message });
     }
 }
-
-module.exports = {
-    findAllCustomers,
-};
+ 
