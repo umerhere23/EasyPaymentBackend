@@ -16,3 +16,21 @@ exports.GetAllMenu = async function (req, res) {
         res.status(500).json({ message: err.message });
     }
 }
+
+exports.GetorderDetails = async function (req, res) {
+    try {
+        const orderDetails = await  Service.GetAllorderDetails();
+        res.json(orderDetails);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+exports.Getorder  = async function (req, res) {
+    try {
+        const order  = await  Service.GetAllorder ();
+        res.json(order);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}

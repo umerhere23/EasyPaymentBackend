@@ -6,5 +6,7 @@ const router = express.Router();
 router.get('/customers', Controller.findAllCustomers);
 router.get('/Menu',  Controller.GetAllMenu);
 
+router.get('/ordersDetails',  Controller.GetorderDetails);
+router.get('/orders',  Controller.Getorder);
 
 module.exports = router;

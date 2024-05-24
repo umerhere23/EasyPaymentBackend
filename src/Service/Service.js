@@ -18,3 +18,23 @@ exports.GetAllMenus = async function () {
         throw err;
     }
 };
+exports.GetAllorderDetails= async function () {
+    try {
+        const [rows, fields] = await db.promise().query('SELECT * FROM orderdetails');
+        return rows;
+    } catch (err) {
+        console.error('Error in orderdetails:', err);
+        throw err;
+    }
+};
+
+
+exports.GetAllorder= async function () {
+    try {
+        const [rows, fields] = await db.promise().query('SELECT * FROM  orders');
+        return rows;
+    } catch (err) {
+        console.error('Error in orders:', err);
+        throw err;
+    }
+};
