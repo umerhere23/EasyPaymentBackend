@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = 3000;
-const Controller = require("./src/routes/routes");
+const routes = require("./src/routes/routes");
 app.use(cors());
-app.use("/customer", Controller);
+app.use(express.json());
+app.use("/customer", routes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
