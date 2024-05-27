@@ -52,3 +52,12 @@ exports.getTables = async (req, res) => {
     res.status(500).json({ message: "Failed to get tables" });
   }
 };
+exports.addMenuItem = async (req, res) => {
+    try {
+      const Menu = await Service.addMenuItem(req.body);
+      return res.status(200).json({ message: "Menu added successfully" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Failed to add Menu" });
+    }
+  };

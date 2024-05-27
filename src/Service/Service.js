@@ -41,11 +41,11 @@ exports.GetAllorder = async function () {
 };
 
 exports.addTableService = async (data) => {
-  const { waiter, seats, status, current_status, tableId } = data;
+  const {  status,Name, } = data;
   try {
     const table = await db.query(
-      `INSERT INTO tables (waiter,number_of_seats,status,current_status,tableID) VALUES(?,?,?,?,?)`,
-      [waiter, seats, status, current_status, tableId]
+      `INSERT INTO tables ( status,Name) VALUES(  ?,?)`,
+      [status,Name,]
     );
     return true;
   } catch (error) {
