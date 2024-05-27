@@ -38,3 +38,16 @@ exports.GetAllorder= async function () {
         throw err;
     }
 };
+exports.addMenuItem = async function ({ ID, Name, Price, Ingredient, Status }) {
+    try {
+        const text = 'INSERT INTO Menu (ID, Name, Price, Ingredient, Status) VALUES (?, ?, ?, ?, ?)';
+        const values = [ID, Name, Price, Ingredient, Status];
+        const [result] = await db.promise().query(text, values);
+        const newMenuItemId = result.insertId;
+        const [rows] = await db.promise().query('SELECT * FROM Menu WHERE ID = ?', [newMenuItemId]);
+        return rows[0];
+    } catch (err) {
+        console.error('Error in addMenuItem:', err);
+        throw err;
+    }
+};

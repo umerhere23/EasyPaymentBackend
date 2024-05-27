@@ -34,3 +34,13 @@ exports.Getorder  = async function (req, res) {
         res.status(500).json({ message: err.message });
     }
 }
+
+exports.addMenuItem =async function (req, res) {
+    const { ID, Name, Price, Ingredient, Status } = req.body;
+    try {
+        const newMenuItem = await Service.addMenuItem({ ID, Name, Price, Ingredient, Status });
+        res.status(201).json(newMenuItem);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
