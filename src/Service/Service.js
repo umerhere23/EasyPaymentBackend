@@ -73,3 +73,28 @@ exports.addMenuItem = async function ({ ID, Name, Price, Ingredient, Status }) {
         throw err;
     }
 };
+
+exports.addCustomer = async (data) => {
+    const { Id, Name, PhoneNumber, Email } = data;
+    try {
+        const result = await db.promise().query(
+            `INSERT INTO Customer (Id, Name, PhoneNumber, Email) VALUES (?, ?, ?, ?)`,
+            [Id, Name, PhoneNumber, Email]
+        );
+        return result;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
+exports.addOrder = async function ({ Id, Status, placementTime, orderNo, Remarks, TableId, CustomerId }) {
+    try {
+        const text = 'INSERT INTO Orders (Id, Status, placementTime, orderNo, Remarks, TableId, CustomerId) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const values = [Id, Status, placementTime, orderNo, Remarks, TableId, CustomerId];
+        const result = await db.promise().query(text, values);
+        return result;
+    } catch (err) {
+        console.error('Error in addOrder:', err);
+        throw err;
+    }
+};

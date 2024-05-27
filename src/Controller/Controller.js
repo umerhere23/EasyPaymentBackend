@@ -61,3 +61,26 @@ exports.addMenuItem = async (req, res) => {
       return res.status(500).json({ message: "Failed to add Menu" });
     }
   };
+
+  exports.addcustomers = async (req, res) => {
+    try {
+      const customer = await Service.addCustomer(req.body);
+      return res.status(200).json({ message: " customers added successfully" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Failed to add  customers" });
+    }
+  };
+
+  exports.addOrder=async function (req, res) {
+    const { Id, Status, placementTime, orderNo, Remarks, TableId, CustomerId } = req.body;
+    if (!Id || !Status || !placementTime || !orderNo || !Remarks || !TableId || !CustomerId) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+    try {
+        await Service.addOrder({ Id, Status, placementTime, orderNo, Remarks, TableId, CustomerId });
+        res.status(201).json({ message: "Order added successfully" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
