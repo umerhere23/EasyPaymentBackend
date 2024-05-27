@@ -1,5 +1,6 @@
 const Service = require("../Service/Service");
-
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 exports.findAllCustomers = async function (req, res) {
   try {
     const customers = await Service.findAllCustomers();
@@ -84,3 +85,33 @@ exports.addMenuItem = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 }
+
+exports.login = async function (req, res) {
+    const { username, password } = req.body;
+
+    try {
+        const result = await  Service.login(username, password);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Login error:', error);
+        if (error.message === 'Invalid username') {
+            res.status(401).json({ message: 'Invalid username' });
+        } else if (error.message === 'Invalid password') {
+            res.status(401).json({ message: 'Invalid password' });
+        } else {
+            res.status(500).json({ message: 'An unexpected error occurred' });
+        }
+    }
+};
+
+exports.addAdmin = async function (req, res) {
+    const { username, password, email } = req.body;
+
+    try {
+        const result = await Service.addAdmin(username, password, email);
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Add admin error:', error);
+        res.status(400).json({ message: 'Failed to add admin' }); // Return a generic error message
+    }
+};

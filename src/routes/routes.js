@@ -16,5 +16,7 @@ router.post("/table", Controller.addTable);
 router.get("/table", Controller.getTables);
 
 router.post('/order', Controller.addOrder);
+router.post('/login',  Controller.login);
+router.post('/admin/add',  Controller.addAdmin);
 
 module.exports = router;
