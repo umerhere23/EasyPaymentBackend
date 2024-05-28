@@ -104,42 +104,33 @@ exports.addOrder = async function ({ Id, Status, placementTime, orderNo, Remarks
 };
 
 exports.login = async function (username, password) {
-    try {
-        username = username.trim();
-        password = password.trim();
+  try {
+      username = username.trim();
+      password = password.trim();
 
-        const [rows] = await db.promise().query('SELECT * FROM admin WHERE Username = ?', [username]);
-        if (!rows || rows.length === 0) {
-            throw new Error('Invalid username');
-        }
+      const [rows] = await db.promise().query('SELECT * FROM admin WHERE Username = ?', [username]);
+      if (!rows || rows.length === 0) {
+          throw new Error('Invalid username');
+      }
 
-        const admin = rows[0];
+      const admin = rows[0];
 
-        console.log('Input Password:', password);
-        console.log('Stored Password:', admin.Password);
+      console.log('Input Password:', password);
+      console.log('Stored Password:', admin.Password);
 
-        if (password !== admin.Password) { 
-            throw new Error('Invalid password');
-        }
+      if (password !== admin.Password) { 
+          throw new Error('Invalid password');
+      }
 
-        console.log('Admin Password:', admin.Password);
-        console.log('Admin Email:', admin.Email);
+      console.log('Admin Password:', admin.Password);
+      console.log('Admin Email:', admin.Email);
 
-        // Generate a random secret key at runtime
-        const secretKey = crypto.randomBytes(64).toString('hex');
-
-        // Generate a JWT token
-        const token = jwt.sign(
-            { username: admin.Username, id: admin.Id },
-            secretKey,
-            { expiresIn: '1h' }
-        );
-
-        return { message: 'Login successful', token };
-    } catch (error) {
-        throw error;  
-    }
+      return { message: 'Login successful' };
+  } catch (error) {
+      throw error;  
+  }
 };
+
 exports.addAdmin = async function (username, password, email) {
     try {
         const [existingAdmins] = await db.promise().query('SELECT * FROM Admin WHERE username = ?', [username]);
